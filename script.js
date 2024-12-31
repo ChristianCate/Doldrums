@@ -2,28 +2,13 @@ let wood = 0
 let plantFiber = 0
 let tog = -1;
 let intervalId
+let gold = 0;
 
-const toggle = (func) => {
-    
-    tog = tog * -1
-    
-    if (tog > 0) {
-        intervalId = setInterval(func, 1000)
-        
-    }
-
-    else if(tog < 0) {
-        clearInterval(intervalId)
-        intervalId = null
-    }
-    
-}
 
 
 
 const scavenge = () => {
     let chance = Math.floor(Math.random() * 100)
-    
     move()
     if (chance < 60) {
         wood = wood + 1
@@ -35,13 +20,21 @@ const scavenge = () => {
         wood++
         plantFiber++
     }
-    
     document.getElementById('wood').textContent = wood;
     document.getElementById('plant-fiber').textContent = plantFiber;
-    
 }
 
-
+//interval toggle
+const toggle = (func) => {    
+    tog = tog * -1   
+    if (tog > 0) {
+        intervalId = setInterval(func, 1000)        
+    }
+    else if(tog < 0) {
+        clearInterval(intervalId)
+        intervalId = null
+    }
+}
 
 /* menu functionality, thanks w3*/
 const drop = document.getElementsByClassName('drop')
@@ -76,21 +69,23 @@ const openPage = (evt, name) => {
     evt.currentTarget.className += 'active';
 }
 // progress bar functionality
+
 function move() {
-    let i = 0;
-    if (i == 0) {
-        i = 1;
-        let elem = document.getElementById("thisprogress");
-        let width = 1;
-        let id = setInterval(frame, 10);
-        function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-            i = 0;
-        } else {
-            width++;
-            elem.style.width = width + "%";
+    let lastUpdate = Date.now();
+    const duration = 1000; // 1 second
+    let progress = 0;
+    const interval = setInterval(() => {
+        const now = Date.now();
+        const deltaTime = now - lastUpdate;
+        lastUpdate = now;
+
+        progress += deltaTime / duration;
+        progress = Math.min(progress, 1); // Ensure it doesn't exceed 100%
+        document.getElementById("thisprogress").style.width = `${progress * 100}%`;
+
+        if (progress >= 1) {
+            clearInterval(interval);
+            
         }
-        }
-    }
-} 
+    }, 16); // Run every ~16ms for smoother updates
+}
