@@ -4,12 +4,36 @@ let tog = -1;
 let intervalId
 let gold = 0;
 
+const lowerL = document.getElementById('bottom-skill-info l')
+const lowerR = document.getElementById('bottom-skill-info r')
 
 
+
+
+const skillInfo = () => {
+    lowerL.innerHTML = `
+<div>Speed: ${this.speed}</div>
+<div>Rate: ${this.incrementValue}</div>
+<div>XP: ${this.xp}</div>
+`
+lowerL.style.display = 'flex'
+}
+
+const bonusInfo = () => {
+   lowerR.innerHTML =  `<div>Speed Bonus: ${this.speedBonus}</div>
+<div>Rate Bonus: ${this.incrementValueBonus}</div>
+<div>XP Bonus: ${this.xpBonus}</div>
+`
+lowerR.style.display = 'flex'
+}
 
 const scavenge = () => {
     let chance = Math.floor(Math.random() * 100)
     move()
+    skillInfo()
+    bonusInfo()
+  
+   
     if (chance < 60) {
         wood = wood + 1
     }
@@ -89,3 +113,12 @@ function move() {
         }
     }, 16); // Run every ~16ms for smoother updates
 }
+
+const skillObj= [
+    {
+        id : 'scavenge',
+        interval: 3,
+        incrementValue: 1,
+        xp: 12,
+    }
+]

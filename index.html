@@ -11,23 +11,26 @@
 </head>
 
 <!-- Title Nav -->
+<div class='flex-container'>
 <header class="container">
     <button class="title page-link" onclick="openPage(event, 'main')">doldrums</button>
     <button class="titlebtn page-link" onclick="openPage(event, 'inventory')">Inventory</button>
     <button class="titlebtn  page-link" onclick="openPage(event, 'trader')">Trader</button>
-    <span class="titlebtn2"></span></span>
+    <span class="titlebtn2">gold</span></span>
 </header>
 <body>
 
     <!-- overall container for main pages -->
-   <div class='flex-container'>
+   
 
     <!-- left hand nav section -->
-    <nav class='nav'> 
+    <nav class='nav' id ='nav' style="overflow-y:auto"> 
         <button class="drop top-drop">Skills</button>
         <div class="page">
-          <button class="page-link" onclick="openPage(event, 'scavenge')">Scavenge</button>
+          <button class="page-link" onclick="openPage(event, 'gather')">Gather</button>
+            <br>
           <button class="page-link" onclick="openPage(event, 'farm')">Farm</button>
+            <br>
           <button class="page-link" onclick="openPage(event, 'hunt')">Hunt</button>
         </div>
         <button class="drop">Craft</button>
@@ -40,6 +43,8 @@
           <button class="page-link" onclick="openPage(event, 'parley')">Parley</button>
           <button class="page-link" onclick="openPage(event, 'navy')">Naval Warfare</button>
         </div>
+        <div class="page"></div>
+
     </nav>
 
     <!-- main pages outside of nav -->
@@ -48,7 +53,7 @@
             main
         </div>
         
-        <div id="scavenge" class="page-content">
+        <div id="gather" class="page-content">
             <button class="button" onclick="toggle(scavenge)">Scavenge</button>
             
             <div class="skill-section">
@@ -59,10 +64,10 @@
             </div>
         </div>
         <div id="farm" class="page-content">
-            farm
+            farm          
         </div>
         <div id="hunt" class="page-content">
-            hunt
+            hunt      
         </div>
         <div id="inventory" class="page-content">
             inventory
@@ -72,7 +77,10 @@
         </div>
         <div></div>
         </div>
-    <div class="bottom">hello</div> 
+    <div class="bottom-container">
+        <div id="bottom-skill-info l" class="bottom-skill-infol"></div>
+        <div id="bottom-skill-info r" class="bottom-skill-info"></div>
+    </div> 
     </div>
 
 
